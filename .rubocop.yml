@@ -1,0 +1,22 @@
+require: rubocop-rspec
+
+Style/Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 80
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+Layout/DotPosition:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Max: 3
+Metrics/BlockLength:
+  Max: 60
+Metrics/AbcSize:
+  Max: 25
+Metrics/ClassLength:
+  Max: 200
+Metrics/MethodLength:
+  Max: 20
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented

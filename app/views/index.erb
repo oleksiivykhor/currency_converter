@@ -1,0 +1,52 @@
+<div class='jumbotron'>
+  <div class='container mx-auto' style='width: 300px;'>
+    <form action='/' method='POST'>
+      <div class='row'>
+        <div class='form-group'>
+          <input type='text' class='form-control' placeholder='<%= @calculations.dig(:from, :amount).to_f %>' name='from_amount' value='<%= @calculations.dig(:from, :amount) %>'>
+        </div>
+        <div class='form-group'>
+          <select class='form-control' name='from_currency'>
+            <% @currencies.each do |currency| %>
+              <option <%= 'selected' if currency == @calculations.dig(:from, :currency) %>><%= currency.to_s.upcase %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='form-group'>
+          <input type='text' class='form-control' placeholder='<%= @calculations.dig(:to, :amount ).to_f %>' name='to_amount' readonly>
+        </div>
+        <div class='form-group'>
+          <select class='form-control' name='to_currency'>
+            <% @currencies.each do |currency| %>
+              <option <%= 'selected' if currency == @calculations.dig(:to, :currency) %>><%= currency.to_s.upcase %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <input type='submit' value='calculate' class='btn btn-primary'>
+    </form>
+
+    <br>
+    <a href='/update_rates' class='update-rates btn btn-info'>update rates</a>
+  </div>
+</div>
+
+<script type='text/javascript'>
+  $(function() {
+    $('form').submit(function(ev) {
+      ev.preventDefault();
+
+      $.ajax({
+        url: '/',
+        data: $(this).serialize(),
+        success: function(data) {
+          $('body').html(data);
+        }
+      });
+    });
+  });
+</script>

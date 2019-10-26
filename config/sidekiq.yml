@@ -1,0 +1,4 @@
+:schedule:
+  rates:
+    every: ['1d', first_in: '0s']
+    class: RatesWorker
